@@ -1,0 +1,137 @@
+﻿<Window x:Class="BankDepositors.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankDepositors"
+        xmlns:filteredListViewControl="clr-namespace:FilteredListViewControl;assembly=FilteredListViewControl"
+        mc:Ignorable="d"
+        Title="Главное меню" MaxHeight="470" MinHeight="470" Width="800" Background="#FFCDEEB5" >
+    <Window.DataContext>
+        <local:ViewModel></local:ViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Column="0" Grid.ColumnSpan="5" Height="25" VerticalAlignment="Center">
+            <MenuItem Header="Файл" >
+                <MenuItem Header="Сменить аккаунт" Click="MenuItemStaffAcc_Click"></MenuItem>
+                <MenuItem Header="Личный кабинет"  Click="bStaffTabl_Click"></MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" Click="MenuItemExit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Открыть" >
+                <MenuItem Header="Добавить клиента" Click="BaddClient_Click"></MenuItem>
+                <MenuItem Header="Добавить вклад" Click="BaddDeposit_Click"></MenuItem>
+                <MenuItem Header="Открыть вклад клиенту" Click="BaddDepCln_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справка" >
+                <MenuItem Header="О программе" Click="MenuItemAbout_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" x:Name="bStaffTabl" Content="Личный кабинет" HorizontalAlignment="Right"  VerticalAlignment="Top" Click="bStaffTabl_Click"/>
+
+        <TabControl x:Name="TabDC" Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
+            <TabItem x:Name="TabClient" Header="Клиенты">
+                <DockPanel>
+                    <filteredListViewControl:FilteredListView x:Name="LvClients" DockPanel.Dock="Top"  
+                                                              ItemsSource="{Binding ListCln}" 
+                                                              Height="320" SelectionChanged="LvClients_SelectionChanged">
+                        <filteredListViewControl:FilteredListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="MiChange" Header="Изменить" Click="MiChange_Click"></MenuItem>
+                                <MenuItem x:Name="MiDelete" Header="Удалить" Click="MiDelete_Click"></MenuItem>
+                            </ContextMenu>
+                        </filteredListViewControl:FilteredListView.ContextMenu>
+                    </filteredListViewControl:FilteredListView>
+                    <Button x:Name="BaddClient" Content="Добавить" DockPanel.Dock="Bottom" Click="BaddClient_Click"/>
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="TabDeposit" Header="Вклады">
+                <DockPanel>
+                    <filteredListViewControl:FilteredListView x:Name="LvDeposits" DockPanel.Dock="Top"  
+                                                              ItemsSource="{Binding ListDep}" 
+                                                              Height="320" SelectionChanged="LvDeposits_SelectionChanged">
+                        <filteredListViewControl:FilteredListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="MiChangeDep" Header="Изменить" Click="MiChangeDep_Click"></MenuItem>
+                                <MenuItem x:Name="MiDeleteDep" Header="Удалить" Click="MiDeleteDep_Click"></MenuItem>
+                            </ContextMenu>
+                        </filteredListViewControl:FilteredListView.ContextMenu>
+                    </filteredListViewControl:FilteredListView>
+                    <Button x:Name="BaddDeposit" Content="Добавить" DockPanel.Dock="Bottom" Click="BaddDeposit_Click"/>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+
+
+        <DockPanel Grid.Column="3" Grid.Row="2" Grid.RowSpan="3">
+            <Grid x:Name="GridDP">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="TblName" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="Tbl1" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" Text="Номер телефона:" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+                <TextBlock x:Name="TblNumber" Grid.Column="0" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Row="2" />
+                <TextBlock x:Name="Tbl2" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Text="Пасспорт:"/>
+                <TextBlock x:Name="TblPassport" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+                <TextBlock x:Name="Tbl3" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" Text="Адрес:" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" />
+                <TextBlock x:Name="TblAdress" Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Grid.Row="2"/>
+                <TextBlock x:Name="Tbl4" Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" Text="Отв. Сотрудник:" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" />
+                <TextBlock x:Name="TblStaff" Grid.Column="3" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+
+                <DataGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4" x:Name="clientsGrid" ItemsSource="{Binding}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" LoadingRow="dGrid_LoadingRow" RowHeaderWidth="50" 
+                          Background="#FFFAFDE2" Visibility="Visible">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Название" Binding="{Binding name}" Width="*"/>
+                        <DataGridTextColumn Header="Валюта" Binding="{Binding currency}" Width="*"/>
+                        <DataGridTextColumn Header="Дата зачисл." Binding="{Binding dateOfEnrollment, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                        <DataGridTextColumn Header="Зачисленно" Binding="{Binding enrollment}" Width="*"/>
+                        <DataGridTextColumn Header="Дата оконч." Binding="{Binding endDate, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                        <DataGridTextColumn Header="Сумма" Binding="{Binding summ, StringFormat={}{0:#,#.00}}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4" x:Name="depositsGrid" ItemsSource="{Binding}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" LoadingRow="dGrid_LoadingRow" RowHeaderWidth="50" 
+                          Background="#FFFAFDE2" Visibility="Hidden">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}" Width="*"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="*"/>
+                        <DataGridTextColumn Header="Зачисленно" Binding="{Binding enrollment}" Width="*"/>
+                        <DataGridTextColumn Header="Дата оконч." Binding="{Binding endDate, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                        <DataGridTextColumn Header="Сейчас" Binding="{Binding summ, StringFormat={}{0:#,#.00}}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="BaddDepCln" Content="Добавить вклад" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="3" Margin="0,5,0,5" Click="BaddDepCln_Click"/>
+            </Grid>
+        </DockPanel>
+
+
+    </Grid>
+</Window>

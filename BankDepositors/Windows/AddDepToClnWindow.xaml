@@ -1,0 +1,61 @@
+﻿<Window x:Class="BankDepositors.AddDepToClnWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankDepositors"
+        mc:Ignorable="d"
+        Title="Оформление вклада клиенту" Height="360" Width="320">
+    <Window.DataContext>
+        <local:DepositClient/>
+    </Window.DataContext>
+    <Grid x:Name="grid" Background="#FFC0C8CA" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2" Text="Открыть вклад для:" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="{x:Null}"/>
+        <TextBlock x:Name="TblSurnameClient" Text="{Binding Path=Client.Surname}" Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="bSaveDep" Content="Сохранить" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="10"  VerticalAlignment="Center" Click="bSaveDep_Click"/>
+        <Button x:Name="bCancelDep" Content="Отменить" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="11"  VerticalAlignment="Center" Click="bCancelDep_Click"/>
+
+        <TextBlock Grid.Column="0"  Grid.Row="2" Text="Дата откр." TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" />
+        <TextBlock Grid.Column="0"  Grid.Row="3" Text="Сумма" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBlock Grid.Column="0"  Grid.Row="4" Text="Название" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBlock Text="{Binding Path=Deposit_Id}" x:Name="TblDepositId" Grid.Column="0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Margin="84,0,0,0" Height="29" Opacity="0"/>
+        <TextBlock Grid.Column="0"  Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Text="Кол-во месяцев"/>
+        <TextBlock Grid.Column="0"  Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Text="Конечная дата"/>
+        <TextBlock Grid.Column="0"  Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Text="Годовой процент"/>
+        <TextBlock Grid.Column="0"  Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Text="Сумма"/>
+
+        <TextBlock x:Name="TblDateOfEnrollment" Text="{Binding Path=DateOfEnrollment, StringFormat=\{0:dd.MM.yyyy\}}" Grid.Column="1" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="28"></TextBlock>
+        <TextBox x:Name="TblEnrollment" Text="{Binding Path=Enrollment}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <ComboBox ItemsSource="{Binding Path=Deposit.Name}"
+                  x:Name="CbDepToCln" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" 
+                  VerticalAlignment="Top" Width="200" SelectionChanged="CbDepToCln_SelectionChanged"/>
+        <TextBlock x:Name="TblTermDep" Text="{Binding Path=Deposit.Term}" Grid.Column="1" Grid.Row="5" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="28"></TextBlock>
+        <TextBlock x:Name="TblEndDate" Text="{Binding Path=EndDate, StringFormat=\{0:dd.MM.yyyy\}}" Grid.Column="1" Grid.Row="6" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="28"></TextBlock>
+        <TextBlock x:Name="TblPercentDep" Text="{Binding Path=Deposit.Percent}" Grid.Column="1" Grid.Row="7" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="28"></TextBlock>
+        <TextBlock x:Name="TblSumm" Text="{Binding Path=Summ, StringFormat=\{0:F\}}" Grid.Column="1" Grid.Row="9" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="28"></TextBlock>
+
+
+
+
+    </Grid>
+</Window>

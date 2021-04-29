@@ -1,0 +1,55 @@
+﻿<Window x:Class="BankDepositors.AddClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankDepositors"
+        mc:Ignorable="d"
+        Title="Добавить клиента" Height="300" Width="320">
+    <Window.DataContext>
+        <local:Client/>
+    </Window.DataContext>
+    <Grid x:Name="grid" Background="#FFC0C8CA" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2" Text="Добавьте клиента" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="{x:Null}"/>
+        <TextBlock Grid.Column="0"  Grid.Row="1" Text="Имя" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" />
+        <TextBlock Grid.Column="0"  Grid.Row="2" Text="Фамилия" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBlock Grid.Column="0"  Grid.Row="3" Text="Телефон" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBlock Grid.Column="0"  Grid.Row="4" Text="Пасспорт" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBlock Grid.Column="0"  Grid.Row="5" Text="Город" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBlock Grid.Column="0"  Grid.Row="6" Text="Адрес" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+        <TextBox x:Name="TbName" Text="{Binding Path=Name}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28">
+        </TextBox>
+        <TextBox x:Name="TbSurname" Text="{Binding Path=Surname}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <TextBox x:Name="TbPhoneNumber" Text="{Binding Path=PhoneNumber}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <TextBox x:Name="TbPassport" Text="{Binding Path=Passport}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <TextBox x:Name="TbCity" Text="{Binding Path=City}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <TextBox x:Name="TbAdress" Text="{Binding Path=Adress}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <Button x:Name="bSave" Content="Сохранить" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="8"  VerticalAlignment="Center" Click="bSave_Click"/>
+        <Button x:Name="bCancel" Content="Отменить" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="9"  VerticalAlignment="Center" Click="bCancel_Click"/>
+        <ComboBox ItemsSource="{Binding Path=Staff.Surname}"
+                  x:Name="CbStaffs" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="7" 
+                  VerticalAlignment="Top" Width="200" SelectionChanged="CbStaffs_SelectionChanged"/>
+
+        <TextBlock Grid.Column="0"  Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Text="Сотрудник" Margin="0,0,16,0"/>
+        <TextBlock Text="{Binding Path=StaffId}" x:Name="TblStaffId" Grid.Column="0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" Margin="84,0,0,0" Height="29" Opacity="0"/>
+
+
+    </Grid>
+</Window>

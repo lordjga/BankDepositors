@@ -1,0 +1,42 @@
+﻿<Window x:Class="BankDepositors.ChangePassWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankDepositors"
+        mc:Ignorable="d"
+        Title="Смена пароля и логина" Height="200" Width="320">
+    <Window.DataContext>
+        <local:Staff/>
+    </Window.DataContext>
+    <Grid x:Name="grid" Background="#FFC0C8CA" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="TblName" Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="{x:Null}"/>
+
+        <TextBlock Grid.Column="0"  Grid.Row="2" Text="Username" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+
+        <TextBlock Grid.Column="0"  Grid.Row="4" Text="Password" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"/>
+
+
+        <TextBox x:Name="TbSurname" Text="{Binding Path=Username}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <TextBox x:Name="TbPassword" Text="{Binding Path=Password}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Background="White" Height="28"/>
+        <Button x:Name="bSave" Content="Сохранить" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="6" Click="bSave_Click"  Height="18" VerticalAlignment="Center"/>
+        <Button x:Name="bCancel" Content="Отменить" Grid.Column="1"  HorizontalAlignment="Center" Grid.Row="7"  VerticalAlignment="Center" Click="bCancel_Click"/>
+
+
+    </Grid>
+</Window>
